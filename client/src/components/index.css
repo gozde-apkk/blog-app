@@ -169,7 +169,7 @@ footer{
   margin-bottom: 4rem;
 }
 
-.footer_categories a {
+.footer_categories ul{
   background: var(--color-gray-700);
   color: var(--color-white);
   padding: 0.6rem 114rem;
@@ -178,7 +178,7 @@ footer{
 }
 
 
-.footer_categories a:hover {
+.footer_categories li:hover {
   background: var(--color-white);
   color: var(--color-gray-900);
 }
