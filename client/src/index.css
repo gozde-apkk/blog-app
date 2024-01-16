@@ -101,6 +101,7 @@ section{
 
 .btn:hover {
   background: var(--color-gray-900);
+  color: var(--color-white);
 }
 
 
@@ -112,6 +113,18 @@ img {
 
 
 
+.center {
+    text-align: center;
+    padding-top: 5rem;
+    margin-inline : center;
+    display :block;
+    width: 100%;
+
+}
+
+.error-page h2 {
+  margin-top: 3rem;
+}
 
 nav{
   width: 100vw;
@@ -190,4 +203,68 @@ footer{
   color: var(--color-white);
   font-weight: 300;
 
+}
+
+.post-detail {
+  width: var(--form-width);
+  background: var(--color-white);
+  margin-inline: auto;
+  padding: 2;
+}
+.author_posts-container{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4rem;
+}
+
+.post-detail_header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+
+.post-detail_buttons {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+input, select, textarea {
+  width: 100%;
+  padding: 0.6rem 1rem;
+  border-radius: var(--radius-1);
+  resize: none  ;
+}
+
+.form_error-message {
+  background: var(--color-red);
+  color: var(--color-white);
+  font-size: 0.8rem;
+  border-radius: var(--radius-1);
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.register , login  , .create-post {
+  width: var(--form-width);
+  margin-inline: auto;
+  height: calc(100vh-12rem);
+  display: grid;
+  place-items: center;
+}
+
+.register h2 , login h2 , .create-post h2 {
+  margin-bottom: 2rem;
+}
+
+.register small , login small {
+  display: block;
+  margin-top: 1.5rem  ;
 }
