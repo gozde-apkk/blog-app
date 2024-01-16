@@ -23,8 +23,8 @@ const Register = () => {
     <section  className='register'>
       <div className="container">
         <h2>Sign Up</h2>
-        <form>
-          <p>This is an error message</p>
+        <form className='form register_form'>
+          <p className='form_error-message'>This is an error message</p>
           <input type='text' placeholder='Full Name' name='name' value={userData.name} onChange={changeInputHandler}/>
           <input type='text' placeholder='Email' name='email' value={userData.email} onChange={changeInputHandler}/>
           <input type='text' placeholder='Password' name='password' value={userData.password} onChange={changeInputHandler}/>

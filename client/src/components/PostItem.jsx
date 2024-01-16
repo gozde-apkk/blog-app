@@ -3,8 +3,8 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import PostAuthor from './PostAuthor'
 const PostItem = ({title, thumbnail, description, postId, category, authorID}) => {
-  const shortDescription = description .lenght > 145 ? description.substr(0, 145)+ '...' : description;
-  const postTitle = title      .lenght > 145 ? title    .substr(0, 145)+ '...' : title    ;
+  const shortDescription = description.lenght > 145 ? description.substr(0, 145)+ '...' : description;
+  const postTitle = title.lenght > 145 ? title    .substr(0, 145)+ '...' : title    ;
 
   return (
     <article style={{width : "19rem", height:"26rem"}}>
