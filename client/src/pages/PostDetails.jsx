@@ -2,15 +2,16 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Thumbnail from "../images/blog22.jpg";
 import PostAuthor from "../components/PostAuthor";
+import '../index.css'
 const PostDetails = () => {
   return (
     <section className="post-detail">
       <div className="container post-detail_container">
         <div className="post-detail_header">
           <PostAuthor/>
-           <div className="post-de">
-           <Link to={`/posts/werwer/edit`} className="btn sm primary"></Link>
-          <Link to={`/posts/werwer/delete`} className="btn sm danger"></Link>
+           <div className="post-detail_buttons">
+           <Link to={`/posts/werwer/edit`} className="btn primary">Edit</Link>
+          <Link to={`/posts/werwer/delete`} className="btn  danger">Delete</Link>
            </div>
         </div>
         <h1>This is the post title</h1>
