@@ -7,7 +7,7 @@ const PostItem = ({title, thumbnail, description, postId, category, authorID}) =
   const postTitle = title.lenght > 145 ? title    .substr(0, 145)+ '...' : title    ;
 
   return (
-    <article style={{width : "19rem", height:"26rem"}}>
+    <article style={{width : "83rem", height:"26rem", background:"white"}}>
       <div className="post_thumbnail">
         <img src={thumbnail} alt={title}/>
       </div>
