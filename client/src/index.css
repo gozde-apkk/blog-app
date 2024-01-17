@@ -211,6 +211,45 @@ footer{
   margin-inline: auto;
   padding: 2;
 }
+
+
+.authors_container {        
+display: grid;
+grid-template-columns: repeat(4, 1fr);
+gap: 3rem;
+    
+}
+.authors_container a{
+  background: var(--color-white);
+  border-radius: var(--radius-3);
+  box-shadow: 1px 1px 1px black;
+  padding: 0.5rem;
+}
+
+.authors{
+  padding-left: 9rem;
+  padding-block-start: 2rem;
+  background: var(--color-bg);
+  padding:  1rem;
+  border-radius: var(--radius-3);
+  display : flex;
+  gap: 5rem;
+  transition: var(--transition);
+}
+.authors:hover {
+  box-sizing: 0 1rem  1.5rem rgba(0, 0, 0, 0.07);
+} 
+.author_info p{
+  margin-top : 1rem;
+}
+
+.author_avatar {
+  width: 4rem;
+  aspect-ratio:1/1;
+  border-radius: 50%;
+  border: 0.3rem solid var(--color-bg);
+  overflow: hidden;
+}
 .author_posts-container{
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -267,4 +306,209 @@ input, select, textarea {
 .register small , login small {
   display: block;
   margin-top: 1.5rem  ;
+}
+
+/*********Profile **/
+.profile_container{
+  display: grid;
+  place-items: center;
+  text-align: center;
+}
+
+.profile_details {
+  width: 100%;
+  padding-left: 10rem;
+  padding-right: 10rem;
+}
+
+.avatar_wrapper{
+  width: 15rem;
+  aspect-ratio: 1/1;
+  position: relative;
+  margin-inline: auto;
+  margin-top: 1rem;
+}
+
+.profile_avatar {
+  height: 100%;
+  border-radius: 50%;
+  border: 1rem solid var(--color-white);
+  overflow: hidden;
+}
+.avatar_form input{
+  visibility: hidden;
+  margin-bottom: 1rem;
+}
+.avatar_form label, .profile_avatar-btn{
+  background: var(--color-gray-900);
+  color: var(--color-white);
+  font-size: 1.2rem;
+  position: absolute;
+  right: 2rem;
+  bottom: 1.4rem;
+  width: 3rem;
+  height: 3rem;
+  display: grid;
+  place-items: center;
+  border-radius: 50%
+}
+.profile_avatar-btn {
+  cursor: pointer;
+  padding: 0;
+  font-size: 2rem;
+  background: var(--color-primary);
+}
+
+.profile_details h1 {
+  margin-top: 1.5rem;
+}
+
+.form.profile_form {
+  margin-top: 3rem;
+  margin-inline : 0;
+  width : var(--form-width)
+;}
+
+
+
+
+
+
+
+
+
+/*********dashboard***/
+
+.dashboard_container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+.dashboard_post {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  background: var(--color-white);
+  padding: 0.5rem 1.2rem;
+  border-radius: var(--radius-3);
+}
+
+.dashboard_post-info {
+  display: flex;
+  gap: 2rem;
+  width: 100%;
+  align-items: center;
+}
+
+
+.dashboard_post-thumbnail {
+  width: 4rem;
+  border-radius: var(--radius-1);
+  overflow: hidden;
+}
+
+.dashboard_post-actions{
+  display: flex;
+  gap: 1rem;
+}
+
+.ql-editor {
+  overflow: scroll;
+  background-color: var(--color-white);
+  height: 8rem !important;
+}
+
+
+
+@media screen and (max-width : 800px) {
+  h1{
+    font-size : 1.5rem;
+  }
+  h2{
+    font-size: 1.4rem;
+  }
+  h3 {
+    font-size: 1.2rem;
+  }
+  .container {
+    width: var(--container-width-md);
+  }
+  .nav_container{
+    position: relative;
+  }
+  .nav_menu{
+    position: absolute;
+    top: 5rem;
+    right: 0;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .nav_menu li{
+    width: 100%;
+    box-shadow: -2rem 4rem 4rem rgba(0, 0, 0, 0.26);
+    animation: drowDown 500ms ease forwards;
+    opacity: 1;
+    transform: rotateX(30deg);
+    transform-origin: top;
+  }
+
+  @keyframes dropDown {
+    to {
+      opacity: 1;
+      transform: rotateX(15deg);
+    }
+  }
+  .nav_menu li a{
+    display: block;
+    background: var(--color-white);
+    padding: 0.85rem 2.5rem;
+  }
+
+  .nav_toogle-btn{
+    display:  inline-block;
+    background: transparent;
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+
+  .post_container {
+    grid-template-columns: 1fr;
+    gap : 1rem
+  }
+  .footer_categories {
+    flex-direction: column;
+  }
+  .post-detail {
+    width: 100%;
+    background: transparent;
+    padding: 0;
+  }
+  .post-detail h1 {
+    margin-top: 1rem;
+  }
+
+  .register, .login, .create-post {
+    width: 100%;
+  }
+  .form.profile_form{
+    margin-top : 2.5rem;
+    width: 100%;
+  }
+  .authors_container {
+    grid-template-columns: 1rf;
+    gap: 1.2rem;
+  }
+  .dashboard_post {
+    flex-direction: column;
+  }
+
+  .dashboard_post-info{
+    gap: 1.5rem;
+  }
+  .dashboard_post-thumbnail{
+    width: 5rem;
+  }
 }

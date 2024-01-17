@@ -40,7 +40,7 @@ const CreatePost = () => {
           </select>
           <ReactQuill modules={modules} value={description} onChange={setDescription} formats={formats}/> 
             <input type='file' onChange={e => setThumbnail(e.target.files[0])} accept='png, jpg, jpeg'/>
-            <button type='submit' className='btn primary' >Create</button>
+            <button type='submit' className='btn primary' >Create</button>    
         </form>
       </div>
      </div>
