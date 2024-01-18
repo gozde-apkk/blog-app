@@ -1,5 +1,4 @@
-const { Schema } = require("mongoose");
-
+const { Schema, model } = require("mongoose");
 
 
 const postSchema = new Schema({
@@ -19,8 +18,12 @@ const postSchema = new Schema({
     },
     creator : {
         type : Schema.Types.ObjectId, ref: "User"},
-        title : {
+     thumbnail : {
             type : String,
             required : true
         }
 },{timestamps:true})
+
+
+
+module.exports = model('Post', postSchema);

@@ -61,6 +61,7 @@ const loginUser = async (req, res, next) => {
     const token = jwt.sign({ id, name }, process.env.JWT_SECRET, {
       expiresIn: "1d",
     });
+    res.cookie("access_token", token, {httpOnly: true, sameSite: "none", secure: true})
     res.status(200).json({ token, id, name });
   } catch (error) {
     return res.status(400).json({ message: "Login failed.Please check" });
