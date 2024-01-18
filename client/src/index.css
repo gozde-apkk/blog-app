@@ -498,7 +498,7 @@ input, select, textarea {
     width: 100%;
   }
   .authors_container {
-    grid-template-columns: 1rf;
+    grid-template-columns: 0.5rf;
     gap: 1.2rem;
   }
   .dashboard_post {
