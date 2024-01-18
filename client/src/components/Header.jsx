@@ -1,10 +1,12 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { FaBars } from "react-icons/fa";  
 import {AiOutlineClose} from "react-icons/ai"
 import './index.css'
+import { UserContext } from '../context/userContext';
 
 const Header = () => {
+  const {currentUser} = useContext(UserContext)
   const [isNavShowing, setIsNavShowing] = useState(window.innerWidth)
   const closeNavHandler = () => {
     if(window.innerWidth <800){
@@ -19,7 +21,7 @@ const Header = () => {
         <Link onClick={closeNavHandler}    to="/" className='nav_logo'>
         <img src='logo'/>
         </Link>
-       { isNavShowing && <ul className="nav_menu">
+       {currentUser?.id && isNavShowing && <ul className="nav_menu">
           <li><Link onClick={closeNavHandler} to="/ ">Ernest Achiver</Link></li>
           <li><Link onClick={closeNavHandler} to="/create">Create Post</Link></li>
           <li><Link onClick={closeNavHandler} to="/authors">Authors</Link></li>

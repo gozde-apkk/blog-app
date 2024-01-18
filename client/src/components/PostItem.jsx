@@ -1,11 +1,12 @@
 
-import React from 'react'
+import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import PostAuthor from './PostAuthor'
+import { UserContext } from '../context/userContext';
 const PostItem = ({title, thumbnail, description, postId, category, authorID}) => {
-  const shortDescription = description.lenght > 145 ? description.substr(0, 145)+ '...' : description;
-  const postTitle = title.lenght > 145 ? title    .substr(0, 145)+ '...' : title    ;
-
+  const shortDescription = description?.length > 145 ? description.substr(0, 145)+ '...' : description;
+  const postTitle = title?.length > 145 ? title.substr(0, 145)+ '...' : title    ;
+  const {currentUser} = useContext(UserContext  )
   return (
     <article style={{width : "83rem", height:"26rem", background:"white"}}>
       <div className="post_thumbnail">
