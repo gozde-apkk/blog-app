@@ -1,13 +1,22 @@
-import React, { useState } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import ReactQuill from 'react-quill'
 import 'react-quill/dist/quill.snow.css'
+import { UserContext } from '../context/userContext';
+import { useNavigate } from 'react-router-dom';
 const CreatePost = () => {
 
   const [title, setTitle] = useState("");
   const [category, setCategory] = useState("");
   const [description, setDescription] = useState("");
   const [thumbnail, setThumbnail] = useState("");
-
+   const {currentUser} = useContext(UserContext)
+   const token = currentUser?.token;
+  const navigate = useNavigate();
+   useEffect(() => {
+     if(!currentUser) {
+       navigate('/login')
+     }
+   })
 
   const modules = {
     toolbar : [
