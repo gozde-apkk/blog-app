@@ -35,9 +35,9 @@ const Login = () => {
       })
   }
   return (
-    <section  className='login'>
-      <div className="container">
-        <h2>Sign In</h2>
+    <section style={{paddingLeft: "5rem", paddingRight : "5rem", height:"20rem", display : "flex", justifyContent:"center"}} className='login'>
+      <div style={{width:"23rem"}} className="container">
+        <h2 style={{paddingBottom:"2rem"}}>Sign In</h2>
         <form className='form login_form' onSubmit={loginUser}>
           {error && <p>{error} </p>}
           <input type='text' placeholder='Email' name='email' value={userData.email} onChange={changeInputHandler}/>
