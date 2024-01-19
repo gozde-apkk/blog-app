@@ -3,7 +3,7 @@ import ReactQuill from 'react-quill'
 import 'react-quill/dist/quill.snow.css'
 import { UserContext } from '../context/userContext';
 import { useNavigate } from 'react-router-dom';
-
+import axios from 'axios';
 
 const CreatePost = () => {
 
@@ -11,6 +11,7 @@ const CreatePost = () => {
   const [category, setCategory] = useState("");
   const [description, setDescription] = useState("");
   const [thumbnail, setThumbnail] = useState("");
+  const [error, setError] = useState("");
    const {currentUser} = useContext(UserContext)
    const token = currentUser?.token;
   const navigate = useNavigate();
@@ -39,6 +40,21 @@ const CreatePost = () => {
   ]
 
   const POST_CATEGORIES =["Agricultere", "Business", "Education", "Enterainment", "Art", "Investment","Uncategorized", "Weather"]
+
+  const createPost = async (e) => {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append('title', title);
+    formData.append('category', category);
+    formData.append('description', description);
+    formData.append('thumbnail', thumbnail);
+    try{
+      const response = await axios.post(`http://localhost:5000/api/posts`, formData, 
+      {withCredentials : true, headers : {Authorization: `Bearer ${token}`}})
+    }catch(err){
+      setError(err.response.data.message)
+    }
+  }
   return (
      <div style={{height : '100vh'}} className="create-post">
       <div className="container">
