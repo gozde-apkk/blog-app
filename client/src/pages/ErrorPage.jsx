@@ -5,7 +5,7 @@ const ErrorPage = () => {
     <section className='error-page'>
       <div className='center'>
         <Link to='/' className='btn primary'>
-        <h2>Page Not Found</h2>P
+        <h2>Page Not Found</h2>
         </Link>
       </div>
     </section>

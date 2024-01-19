@@ -6,6 +6,7 @@ const Logout = () => {
   const navigate = useNavigate();
   setCurrentUser(null);
   navigate('/login');
+
   return (
     <>
       

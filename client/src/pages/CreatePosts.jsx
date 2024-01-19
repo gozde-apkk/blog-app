@@ -3,6 +3,8 @@ import ReactQuill from 'react-quill'
 import 'react-quill/dist/quill.snow.css'
 import { UserContext } from '../context/userContext';
 import { useNavigate } from 'react-router-dom';
+
+
 const CreatePost = () => {
 
   const [title, setTitle] = useState("");
@@ -13,10 +15,10 @@ const CreatePost = () => {
    const token = currentUser?.token;
   const navigate = useNavigate();
    useEffect(() => {
-     if(!currentUser) {
+     if(!token) {
        navigate('/login')
      }
-   })
+   },[])
 
   const modules = {
     toolbar : [
@@ -38,7 +40,7 @@ const CreatePost = () => {
 
   const POST_CATEGORIES =["Agricultere", "Business", "Education", "Enterainment", "Art", "Investment","Uncategorized", "Weather"]
   return (
-     <div style={{height : '80vh'}} className="create-post">
+     <div style={{height : '100vh'}} className="create-post">
       <div className="container">
         <h6>Create Post</h6>
         <p className='form_error-message'>This is an error message</p>

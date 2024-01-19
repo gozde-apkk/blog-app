@@ -5,7 +5,7 @@ const jwt = require("jsonwebtoken");
 
 const fs = require("fs");
 const path = require("path");
-const { v4: uuid } = require;
+const { v4: uuid } = require("uuid");
 const registerUser = async (req, res, next) => {
   try {
     const { name, email, password, password2 } = req.body;
@@ -61,13 +61,24 @@ const loginUser = async (req, res, next) => {
     const token = jwt.sign({ id, name }, process.env.JWT_SECRET, {
       expiresIn: "1d",
     });
-    res.cookie("access_token", token, {httpOnly: true, sameSite: "none", secure: true})
+    res.cookie("access_token", token, {
+      httpOnly: true,
+      sameSite: "none",
+      secure: true,
+    });
     res.status(200).json({ token, id, name });
   } catch (error) {
     return res.status(400).json({ message: "Login failed.Please check" });
   }
 };
 
+const logoutUser = (req, res) => {
+  res.cookie("token", "", {
+    httpOnly: true,
+    expires: new Date(0),
+  });
+  res.status(200).json({ message: "Logged out successfully" });
+};
 const getUser = async (req, res, next) => {
   try {
     const { id } = req.params;
@@ -78,15 +89,61 @@ const getUser = async (req, res, next) => {
     res.status(200).json(user);
   } catch (error) {}
 };
-const changeAvatar = (req, res, next) => {
+const changeAvatar = async (req, res, next) => {
   try {
-    res.json(req.files);
-    console.log(req.files);
+    if (!req.files.avatar) {
+      return res.status(400).json({ message: "Please choose an image" });
+    }
+
+    const user = await User.findById(req.user.id);
+    console.log(user);
+    if (user.avatar) {
+      fs.unlink(path.join(__dirname, "..", "uploads", user.avatar), (err) => {
+        if (err) {
+          console.log(err);
+        }
+      });
+    }
+    
+    const { avatar } = req.files;
+    console.log(avatar);
+    if (avatar.size > 5000000) {
+      return res.status(400).json({ message: "Profile picture too big" });
+    }
+
+
+    let fileName = avatar.name;
+    let splittedFilename = fileName.split(".");
+    let newFileName =
+      splittedFilename[0] +
+      uuid() +
+      "." +
+      splittedFilename[splittedFilename.length - 1];
+    avatar.mv(
+      path.join(__dirname, "..", "/uploads", newFileName),
+      async (err) => {
+        if (err) {
+          return err;
+        }
+
+        const updatedAvatar = await User.findByIdAndUpdate(
+          req.user.id,
+          { avatar: newFileName },
+          { new: true }
+        );
+        if (!updatedAvatar) {
+          return res
+            .status(400)
+            .json({ message: "Avatar couldn't be changed" });
+        }
+        res.status(200).json(updatedAvatar);
+      }
+    );
   } catch (error) {
-    return res.status(404).json({ message: "changeavatar is dont working" });
+    console.log(error);
+    // return res.status(404).json({ message: "change avatar is dont working" });
   }
 };
-
 const editUser = async (req, res, next) => {
   try {
     const { name, email, currentPassword, newPassword, newConfirmPassword } =
@@ -96,7 +153,7 @@ const editUser = async (req, res, next) => {
     }
 
     const user = await User.findById(req.user.id);
-    console.log("User>" , user)
+    console.log("User>", user);
     if (!user) {
       return res.status(400).json({ message: "User not found" });
     }
@@ -107,7 +164,7 @@ const editUser = async (req, res, next) => {
 
     const validateUserPassword = await bcrypt.compare(
       currentPassword,
-      user.password,
+      user.password
     );
     if (!validateUserPassword) {
       return res.status(400).json({ message: "Invalid current password" });
@@ -126,8 +183,8 @@ const editUser = async (req, res, next) => {
       { new: true }
     );
     res.status(200).json(newInfo);
-  } catch(error) {
-    return res.status(400).json({error});
+  } catch (error) {
+    return res.status(400).json({ error });
   }
 };
 
@@ -142,4 +199,5 @@ module.exports = {
   editUser,
   getAuthors,
   getUser,
+  logoutUser,
 };

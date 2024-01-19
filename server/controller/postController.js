@@ -23,7 +23,7 @@ const createPost = async (req, res, next) => {
       "." +
       splittedFilename[splittedFilename.length - 1];
     thumbnail.mv(
-      path.join(__dirname, "..", "/upload", newFilename),
+      path.join(__dirname, "..", "/uploads", newFilename),
       async (err) => {
         if (err) {
           return err;
@@ -38,16 +38,16 @@ const createPost = async (req, res, next) => {
           if (!newPost) {
             return res.status(400).json({ message: "Post not created" });
           }
-
           const currentUser = await User.findById(req.user.id);
+          console.log(currentUser)
           const userPostCount = currentUser.posts + 1;
           const user = await User.findByIdAndUpdate(req.user.id, {
             posts: userPostCount,
           });
-
+       
           res
             .status(200)
-            .json({ message: "Post created successfully", newPost });
+            .json(newPost);
         }
       }
     );

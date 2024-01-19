@@ -14,6 +14,7 @@ const Posts = () => {
       try{
         const response = await axios.get("http://localhost:5000/api/posts");
         setPosts(response?.data)
+        console.log(response.data);
       }catch(err){
         console.log(err);   
       }
@@ -25,15 +26,16 @@ const Posts = () => {
   return (
     <section style={{paddingLeft : "5rem"}} className="posts">
       {posts.length > 0 ? <div className="posts_container ">
-        {posts.map(({ id, thumbnail, category, title, desc, authorID }) => (
+        {posts.map(({ _id : id, thumbnail, category, title, description, creator , createdAt}) => (
           <PostItem
             key={id}
-            postId      ={id}
+            postId={id}
             thumbnail={thumbnail}
             category={category}
             title={title}
-            description={desc}
-            authorID={authorID}
+            description={description}
+            authorID={creator}
+            createdAt={createdAt}
           />
         ))}
       </div>: <h2 className="center">No posts founds</h2>}

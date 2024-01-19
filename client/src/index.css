@@ -292,6 +292,8 @@ input, select, textarea {
 }
 
 .register , login  , .create-post {
+  padding-left: 5rem;
+  padding-right: 5rem;
   width: var(--form-width);
   margin-inline: auto;
   height: calc(100vh-12rem);
