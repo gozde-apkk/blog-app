@@ -188,8 +188,13 @@ const editUser = async (req, res, next) => {
   }
 };
 
-const getAuthors = (req, res, next) => {
-  res.json("getAuthors");
+const getAuthors = async(req, res, next) => {
+  try{
+    const authors = await User.find()
+    res.status(200).json(authors);
+  }catch(err){
+    console.log(err);
+  }
 };
 
 module.exports = {

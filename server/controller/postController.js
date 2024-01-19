@@ -59,7 +59,8 @@ const getCatPosts = async (req, res, next) => {
   try {
     const { category } = req.params;
     const catPost = await Post.find({ category }).sort({ createdAt: -1 });
-    res.status(400).json(catPost);
+    console.log(catPost);
+    res.status(200).json(catPost);
   } catch (error) {
     return console.log(error);
   }

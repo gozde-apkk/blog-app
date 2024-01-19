@@ -6,7 +6,7 @@ require('dotenv').config();
 const cookieParser = require('cookie-parser');
 const upload = require('express-fileupload');
 const userRoutes = require("./routes/userRouter");
-const postRoutes = require("./routes/postRouter");
+const postRoutes = require("./routes/postRouter")
 const { notFound, errorMiddleware } = require('./middleware/errorMiddleware');
 
 const app = express();
