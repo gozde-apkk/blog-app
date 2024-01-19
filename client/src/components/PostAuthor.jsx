@@ -26,7 +26,7 @@ const PostAuthor = ({authorID, createdAt}) => {
     getAuthor()
   }, [])
   return (
-     <Link to={`/posts/users/${author.id}`} className='post_author'>
+     <Link to={`/posts/users/${authorID}`} className='post_author'>
       <div className="post_author-avatar">
         <img src={`http://localhost:5000/uploads/${author.avatar}`} alt=""/>
    </div>
