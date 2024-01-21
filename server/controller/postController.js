@@ -11,7 +11,7 @@ const createPost = async (req, res, next) => {
     if (!title || !category || !description) {
       return res.status(404).json({ message: "All fields are required" });
     }
-    const { thumbnail } = req.files;
+    const {thumbnail } = req.files;
     if (thumbnail.size > 2000000) {
       return res.status(400).json({ message: "Thumbnail too big" });
     }
