@@ -1,8 +1,9 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { useNavigate } from "react-router-dom";
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import '../index.css'
+import { UserContext } from '../context/userContext';
 const Register = () => {
  const [error, setError] = useState("");
  const navigate = useNavigate();
@@ -12,13 +13,14 @@ const Register = () => {
     password : '',
     password2: ''
   });   
-
+  const {setCurrentUser} = useContext(UserContext)
 const registerUser = async (e) => {
   e.preventDefault();
   setError('');
   try{
     const response = await axios.post(`http://localhost:5000/api/users/register`,userData);
     const newUser = await response.data;
+    setCurrentUser(newUser);
     console.log(newUser);
     if(!newUser){
       setError("Couldn't register user")

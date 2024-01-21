@@ -17,6 +17,7 @@ import EditPost from "./pages/EditPost";
 import Register from "./pages/Register";
 import DeletePost from "./pages/DeletePost";
 import UserProvider from './context/userContext'
+import './index.css'
 
 const router = createBrowserRouter([
   {

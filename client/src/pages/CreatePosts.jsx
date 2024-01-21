@@ -30,27 +30,30 @@ const CreatePost = () => {
       ['clean']
     ]
   }
-
-
   const formats = [
     'header',
     'bold', 'italic', 'underline' , 'strike', 'blockquote',
     'list', 'bullet','indent',
     'link','image'
   ]
-
   const POST_CATEGORIES =["Agricultere", "Business", "Education", "Enterainment", "Art", "Investment","Uncategorized", "Weather"]
 
   const createPost = async (e) => {
     e.preventDefault();
-    const formData = new FormData();
-    formData.append('title', title);
-    formData.append('category', category);
-    formData.append('description', description);
-    formData.append('thumbnail', thumbnail);
+    const postData =
+     new FormData();
+    postData.append('title', title);
+    postData.set('category', category);
+    postData.set('description', description);
+    postData.set('thumbnail', thumbnail);
     try{
-      const response = await axios.post(`http://localhost:5000/api/posts`, formData, 
+      const response = await axios.post(`http://localhost:5000/api/posts`, postData, 
       {withCredentials : true, headers : {Authorization: `Bearer ${token}`}})
+      console.log(postData);
+      if(response.status === 201){
+
+        navigate('/');
+      }
     }catch(err){
       setError(err.response.data.message)
     }
@@ -59,8 +62,8 @@ const CreatePost = () => {
      <div style={{height : '100vh'}} className="create-post">
       <div className="container">
         <h6>Create Post</h6>
-        <p className='form_error-message'>This is an error message</p>
-        <form action="" className="form create-post_form">
+      {error &&  <p className='form_error-message'>{error}</p>}
+        <form className="form create-post_form" onSubmit={createPost}>
           <input type='text' placeholder='Title' value={title} onChange={e => setTitle(e.target.value)}/>
           <select name='category' value={category} onChange={e => setCategory(e.target.value)}>
             {POST_CATEGORIES.map(cat => <option key={cat}>{cat}</option>)}

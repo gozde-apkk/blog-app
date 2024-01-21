@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 import PostItem from "./PostItem";
-import './index.css'
+import '../index.css'
 import {DUMMY_POSTS} from '../data.js';
 import axios from  'axios';
 const Posts = () => {
@@ -24,7 +24,7 @@ const Posts = () => {
 
 
   return (
-    <section style={{paddingLeft : "5rem"}} className="posts">
+    <section  className="posts">
       {posts.length > 0 ? <div className="posts_container ">
         {posts.map(({ _id : id, thumbnail, category, title, description, creator , createdAt}) => (
           <PostItem

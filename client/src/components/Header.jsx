@@ -2,11 +2,11 @@ import React, { useContext, useState } from 'react'
 import { Link ,useNavigate} from 'react-router-dom'
 import { FaBars } from "react-icons/fa";  
 import {AiOutlineClose} from "react-icons/ai"
-import './index.css'
-import { UserContext } from '../context/userContext';
-import axios from 'axios'
-import logo from '../images/logo.png'
 
+import { UserContext } from '../context/userContext';
+
+import logo from '../images/logo.png'
+import '../index.css'
 const Header = () => {
   const {currentUser,setCurrentUser} = useContext(UserContext)
   const [isNavShowing, setIsNavShowing] = useState(window.innerWidth)
@@ -36,10 +36,9 @@ const Header = () => {
     <nav>
       <div className='container nav_container'>
         <Link onClick={closeNavHandler}    to="/" className='nav_logo'>
-        <img src={logo}/>
+        <img style={{width:"6rem", marginLeft:"9rem"}} src={logo}/>
         </Link>
        {currentUser?.id && isNavShowing && <ul className="nav_menu">
-          <li><Link onClick={closeNavHandler} to="/profile ">Ernest Achiver</Link></li>
           <li><Link onClick={closeNavHandler} to="/create">Create Post</Link></li>
           <li><Link onClick={closeNavHandler} to="/authors">Authors</Link></li>
           <li><Link onClick={logoutUser} to="/">Logout</Link></li>
